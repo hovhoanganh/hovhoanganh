@@ -1,0 +1,26 @@
+private void SpawnItem()
+    {
+        bool[] checkSpawnItem = new bool[m_listItemDefine.Count];
+        for (int i = 0; i < checkSpawnItem.Length; i++)
+        {
+            checkSpawnItem[i] = false;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            var randomItem = Random.Range(0, checkSpawnItem.Length);
+            if (checkSpawnItem[randomItem] == true)
+            {
+                i--;
+                continue;
+            }
+
+            checkSpawnItem[randomItem] = true;
+            var spawnItemUI = Instantiate(m_itemObject, m_rectTransform);
+            
+            // Set
+            spawnItemUI.SetImg(m_listItemDefine[randomItem].sprite);
+            spawnItemUI.SetDescription(m_listItemDefine[randomItem].description);
+            spawnItemUI.SetName(m_listItemDefine[randomItem].name);
+        }
+    }
